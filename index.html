@@ -349,6 +349,17 @@
     window.addEventListener('load', layoutHolds);
     window.addEventListener('resize', layoutHolds);
     if (document.fonts) document.fonts.ready.then(layoutHolds);
+    // 5. Start at the bottom of the wall (the hero), unless the link points at a section
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    let userScrolled = false;
+    ['wheel', 'touchstart', 'keydown'].forEach(e => window.addEventListener(e, () => userScrolled = true, { passive: true, once: true }));
+
+    function startAtBottom() {
+      if (location.hash || userScrolled) return;
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+    }
+    startAtBottom();
+    window.addEventListener('load', startAtBottom);
   </script>
 </body>
 </html>
