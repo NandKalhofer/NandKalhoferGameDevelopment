@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nand Kalhofer — Game Development Portfolio</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans for headers & Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hold-a" viewBox="0 0 100 100"><path d="M25,20 C45,10 80,25 85,50 C90,75 65,90 35,85 C10,80 10,40 25,20 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M25,20 C45,10 80,25 85,50 C90,75 65,90 35,85 C10,80 10,40 25,20 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-b" viewBox="0 0 100 100"><path d="M50,8 C78,30 90,58 70,84 C55,96 30,92 20,72 C10,50 30,25 50,8 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M50,8 C78,30 90,58 70,84 C55,96 30,92 20,72 C10,50 30,25 50,8 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-c" viewBox="0 0 100 100"><path d="M10,35 C10,25 20,22 50,22 C80,22 90,25 90,35 L90,65 C90,76 80,80 50,80 C20,80 10,76 10,65 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M10,35 C10,25 20,22 50,22 C80,22 90,25 90,35 L90,65 C90,76 80,80 50,80 C20,80 10,76 10,65 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-d" viewBox="0 0 100 100"><path d="M50,12 C80,12 92,35 90,55 C88,80 65,92 45,90 C20,88 8,70 10,48 C12,25 30,12 50,12 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M50,12 C80,12 92,35 90,55 C88,80 65,92 45,90 C20,88 8,70 10,48 C12,25 30,12 50,12 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-e" viewBox="0 0 100 100"><path d="M50,10 C58,10 66,18 90,70 C95,82 88,90 76,90 L24,90 C12,90 5,82 12,70 C34,18 42,10 50,10 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M50,10 C58,10 66,18 90,70 C95,82 88,90 76,90 L24,90 C12,90 5,82 12,70 C34,18 42,10 50,10 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-f" viewBox="0 0 100 100"><path d="M15,45 C15,20 45,12 65,22 C90,32 92,60 72,78 C55,92 30,90 20,72 C16,64 15,55 15,45 Z" fill="currentColor"/><ellipse cx="42" cy="36" rx="20" ry="9" fill="#fff" opacity=".14" transform="rotate(-20 42 36)"/><path d="M15,45 C15,20 45,12 65,22 C90,32 92,60 72,78 C55,92 30,90 20,72 C16,64 15,55 15,45 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/><circle cx="50" cy="52" r="4.5" fill="#2A2A2A"/></symbol><symbol id="hold-btn" viewBox="0 0 100 100"><path d="M50,12 C80,12 92,35 90,55 C88,80 65,92 45,90 C20,88 8,70 10,48 C12,25 30,12 50,12 Z" fill="currentColor"/><ellipse cx="42" cy="32" rx="24" ry="10" fill="#fff" opacity=".16" transform="rotate(-20 42 32)"/><path d="M50,12 C80,12 92,35 90,55 C88,80 65,92 45,90 C20,88 8,70 10,48 C12,25 30,12 50,12 Z" fill="#000" opacity=".1" transform="translate(3 4) scale(.94)"/></symbol><symbol id="waypoint" viewBox="0 0 24 32"><path d="M12 1C6 1 1.5 5.5 1.5 11.2c0 7.6 10.5 19.8 10.5 19.8s10.5-12.200 10.500-19.800C22.500 5.500 18 1 12 1z" fill="currentColor"/><circle cx="12" cy="11" r="4" fill="#fff" opacity=".9"/></symbol></defs></svg>
+
+
+  <!-- Floating Route Selector Widget -->
+  <aside class="route-selector" id="routeSelector">
+    <div class="route-header">Pick a route.</div>
+    <ul class="route-list">
+      <li class="route-item" data-section="contact">
+        <svg class="route-hold" viewBox="0 0 100 100" aria-hidden="true"><use href="#hold-d"/></svg>
+        <span class="route-label">Contact</span>
+      </li>
+      <li class="route-item" data-section="projects">
+        <svg class="route-hold" viewBox="0 0 100 100" aria-hidden="true"><use href="#hold-a"/></svg>
+        <span class="route-label">Projects</span>
+      </li>
+      <li class="route-item" data-section="about">
+        <svg class="route-hold" viewBox="0 0 100 100" aria-hidden="true"><use href="#hold-b"/></svg>
+        <span class="route-label">About</span>
+      </li>
+      <li class="route-item active" data-section="hero">
+        <svg class="route-hold" viewBox="0 0 100 100" aria-hidden="true"><use href="#hold-e"/></svg>
+        <span class="route-label">Start</span>
+      </li>
+    </ul>
+    <div class="route-footer">START LOW, CLIMB UP</div>
+  </aside>
+
+  <!-- MAIN SCROLLABLE CONTAINER -->
+  <main class="main-wrapper">
+
+
+    <!-- SECTION 4: CONTACT / TOP OUT -->
+    <section class="chapter-section" id="contact">
+      
+      <!-- LEFT COLUMN: VERTICAL STICKY SIDEBAR -->
+      <aside class="chapter-sidebar">
+        <div class="chapter-sticky-wrapper">
+          <span class="chapter-num">03</span>
+          <h2 class="chapter-vertical-label">CONTACT</h2>
+        </div>
+      </aside>
+
+      <div class="chapter-content">
+        <div class="side-holds holds-orange outside" aria-hidden="true"><svg class="lhold" style="top:28%;--x:0.5;width:40px;height:40px;--r:12deg" viewBox="0 0 100 100"><use href="#hold-d"/></svg><svg class="lhold" style="top:72%;--x:0.9;width:44px;height:44px;--r:-10deg" viewBox="0 0 100 100"><use href="#hold-f"/></svg></div>
+
+        
+        <span class="section-tag section-tag-orange">03 / THE TOP OUT</span>
+        <h2 class="contact-title">Good games start with a conversation.</h2>
+        <p class="contact-desc">
+          Contact placeholder — add your email and social links here.
+        </p>
+        <a href="mailto:hello@nandkalhofer.com" class="btn btn-orange">Top / Send email</a>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION 3: PROJECTS WALL -->
+    <section class="chapter-section" id="projects">
+
+      <aside class="chapter-sidebar">
+        <div class="chapter-sticky-wrapper">
+          <span class="chapter-num">02</span>
+          <h2 class="chapter-vertical-label">PROJECTS</h2>
+        </div>
+      </aside>
+
+      <div class="chapter-content">
+        <div class="reveal" id="projects-panel">
+          <div class="reveal-clip">
+            <div class="reveal-inner">
+              <div class="side-holds holds-green" aria-hidden="true"><svg class="lhold" style="top:1.5%;--x:0.7;width:42px;height:42px;--r:-12deg" viewBox="0 0 100 100"><use href="#hold-a"/></svg><svg class="lhold" style="top:19%;--x:0.25;width:38px;height:38px;--r:14deg" viewBox="0 0 100 100"><use href="#hold-e"/></svg><svg class="lhold" style="top:37%;--x:0.9;width:46px;height:46px;--r:-6deg" viewBox="0 0 100 100"><use href="#hold-c"/></svg><svg class="lhold" style="top:55%;--x:0.4;width:42px;height:42px;--r:18deg" viewBox="0 0 100 100"><use href="#hold-f"/></svg><svg class="lhold" style="top:73%;--x:0.15;width:40px;height:40px;--r:-16deg" viewBox="0 0 100 100"><use href="#hold-b"/></svg><svg class="lhold" style="top:91%;--x:0.75;width:38px;height:38px;--r:8deg" viewBox="0 0 100 100"><use href="#hold-d"/></svg></div>
+        <div class="wall-grid">
+
+          <!-- Project 5 (Left Tilt) -->
+          <div class="grid-row row-start">
+            <a class="project-card card-tilt-left" href="your-sixth-project.html">
+              <div class="project-banner banner-darkestgreen">
+                <div class="banner-text">SMALL IDEA. BIG FEELING.</div>
+              </div>
+              <div class="project-info">
+                <span class="project-tag">05 / PROJECT PLACEHOLDER</span>
+                <h3 class="project-name">Your sixth project</h3>
+                <p class="project-desc">A space for another game, a jam entry, or an experiment. Add your contribution and what you learned.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Intermediate Hold -->
+          <div class="hold-spacer flex-end">
+            <svg class="hold-inline" viewBox="0 0 100 100">
+              <path d="M30,20 C60,15 85,30 80,60 C75,85 40,85 20,65 C5,45 10,25 30,20 Z" fill="#3D7058" />
+              <circle cx="50" cy="50" r="4" fill="#111" />
+            </svg>
+          </div>
+
+          <!-- Project 4 (Right Tilt) -->
+          <div class="grid-row row-end">
+            <a class="project-card card-tilt-right" href="your-fifth-project.html">
+              <div class="project-banner banner-green">
+                <div class="banner-text">YOUR NEXT WORLD</div>
+              </div>
+              <div class="project-info">
+                <span class="project-tag">04 / PROJECT PLACEHOLDER</span>
+                <h3 class="project-name">Your fifth project</h3>
+                <p class="project-desc">Replace with your game title, a short overview, your role, and a playable build or case study.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Intermediate Hold -->
+          <div class="hold-spacer flex-start">
+            <svg class="hold-inline" viewBox="0 0 100 100">
+              <path d="M25,25 C60,15 85,30 75,70 C65,90 30,85 15,60 C5,40 10,30 25,25 Z" fill="#5E8C98" />
+              <circle cx="48" cy="48" r="4" fill="#111" />
+            </svg>
+          </div>
+
+          <!-- Project 3 (Left Tilt) -->
+          <div class="grid-row row-start">
+            <a class="project-card card-tilt-left" href="clutch-patch.html">
+              <div class="project-banner banner-deepgreen">
+                <img src="images/ClutchPatch.png" alt="Clutch Patch" class="project-img" />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">03 / Client Project, Game Design, Marketing</span>
+                <h3 class="project-name">CLUTCH PATCH</h3>
+                <p class="project-desc">What’s that?! A pimple, right before you have to go on stage at the biggest streamer event? Find the new pimple patches before a fan finds you! Sneak, hide and solve puzzles, all while your Twitch chat tries to help or sabotage your plans.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Intermediate Hold -->
+          <div class="hold-spacer flex-center">
+            <svg class="hold-inline" viewBox="0 0 100 100">
+              <path d="M20,30 C50,10 80,20 85,55 C90,80 55,90 25,80 C5,70 0,45 20,30 Z" fill="#D86B56" />
+              <circle cx="45" cy="50" r="4" fill="#111" />
+            </svg>
+          </div>
+
+          <!-- Project 2 (Right Tilt) -->
+          <div class="grid-row row-end">
+            <a class="project-card card-tilt-right" href="animals-on-set.html">
+              <div class="project-banner banner-darkgreen">
+                <img src="images/AnimalsOnSet_Screenshots/Group13_AnimalsOnSet_02.png" alt="Animals on Set" class="project-img" />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">02 / Unity, Game Design, Production</span>
+                <h3 class="project-name">ANIMALS ON SET</h3>
+                <p class="project-desc">You are the star! Make sure everyone knows and steal your friends’ spotlight in front of the camera. Grab the right outfit, get in frame and pose, but be careful because your rivals will try to punch their way to fame as well. In this chaotic, party game, there is only one rule; Out of frame, out of fame!</p>              
+              </div>
+            </a>
+          </div>
+
+
+          <!-- Project 1 (Left Tilt) -->
+          <div class="grid-row row-start">
+            <a class="project-card card-tilt-left" href="new-hope.html">
+              <div class="project-banner">
+                <img src="images/Exam_01_Nand_Kalhofer.png" alt="NEW HOPE" class="project-img" />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">01 / Unity shaders, modular environments</span>
+                <h3 class="project-name">NEW HOPE</h3>
+                <p class="project-desc">FILL IN: A space for another game, a jam entry, or an experiment. Add your contribution and what you learned.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="route-marker">
+          <svg class="pointer pointer-top" viewBox="0 0 24 32" aria-hidden="true"><use href="#waypoint"/></svg>
+          <svg class="pointer pointer-bottom" viewBox="0 0 24 32" aria-hidden="true"><use href="#waypoint"/></svg>
+          <button type="button" class="reveal-toggle" aria-expanded="false" aria-controls="projects-panel"
+                  aria-label="Show projects" data-label-closed="Show projects" data-label-open="Hide projects">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <use href="#hold-btn"/>
+              <path class="chev" d="M32 58 L50 40 L68 58"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="reveal-summary">
+          <span class="section-tag">02 / THE NEXT HOLD</span>
+          <h2 class="projects-title">All projects.</h2>
+          <p>My projects are fairly widespread, as I aspire to be a fully rounded team lead and/or Independent Game Developer. If there are any questions, you can contact me at the summit!</p>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT / CLIMBING PARTNER -->
+    <section class="chapter-section" id="about">
+
+      <aside class="chapter-sidebar">
+        <div class="chapter-sticky-wrapper">
+          <span class="chapter-num">01</span>
+          <h2 class="chapter-vertical-label">ABOUT ME</h2>
+        </div>
+      </aside>
+
+      <div class="chapter-content">
+        <div class="side-holds holds-blue outside" aria-hidden="true"><svg class="lhold" style="top:3%;--x:0.6;width:40px;height:40px;--r:-14deg" viewBox="0 0 100 100"><use href="#hold-b"/></svg><svg class="lhold" style="top:44%;--x:0.15;width:44px;height:44px;--r:10deg" viewBox="0 0 100 100"><use href="#hold-c"/></svg><svg class="lhold" style="top:80%;--x:0.85;width:38px;height:38px;--r:-8deg" viewBox="0 0 100 100"><use href="#hold-e"/></svg></div>
+
+        <div class="skills">
+          <span class="section-tag">SKILLS</span>
+          <ul class="skill-list">
+            <li class="skill skill-main">Programming</li>
+            <li class="skill skill-main">Game design</li>
+            <li class="skill">Production</li>
+            <li class="skill">Unity / C#</li>
+            <li class="skill">Blender</li>
+            <li class="skill">Godot</li>
+            <li class="skill">Shaders</li>
+            <li class="skill">Modular environments</li>
+          </ul>
+        </div>
+
+        <h2 class="about-title">Three years of wonder</h2>
+        <span class="section-tag">01 / MEET YOUR CLIMBING PARTNER</span>
+        <p class="about-text">
+            I'm Nand Kalhofer, an indie game production student, looking for any opportunity to learn. I've done a lot of student jobs and truly enjoy being exposed to new challenges. As a game developer I am most proficient in programming and game design, but as an indie developer I look forward to learning any skill that comes my way.
+          </p>
+      </div>
+    </section>
+
+
+    <!-- SECTION 1: HERO (Welcome / Base of Wall) -->
+    <section class="hero-section" id="hero">
+      <span class="section-tag">NAND KALHOFER / GAME DEVELOPMENT PORTFOLIO</span>
+      <h1 class="hero-title">A little play. A lot of possibility.</h1>
+      <p class="hero-subtitle">
+        Hi, I'm Nand. I build games and playful experiences. Welcome to my wall—the only way is up.
+      </p>
+      <a href="#about" class="btn btn-teal">Start climbing</a>
+      <div class="hero-footnote">SCROLL UP TO EXPLORE</div>
+
+      <!-- Organic SVG Holds -->
+      <svg class="hold hold-hero-left" viewBox="0 0 100 100">
+        <path d="M25,20 C45,10 80,25 85,50 C90,75 65,90 35,85 C10,80 10,40 25,20 Z" fill="#D86B56" />
+        <path d="M25,20 C45,10 80,25 85,50 C75,55 50,45 35,85" fill="#C25743" opacity="0.6" />
+        <circle cx="50" cy="50" r="4" fill="#2A2A2A" />
+      </svg>
+
+      <svg class="hold hold-hero-right" viewBox="0 0 100 100">
+        <path d="M30,15 C65,10 85,35 80,65 C75,90 35,95 15,70 C0,45 10,20 30,15 Z" fill="#3D7058" />
+        <path d="M30,15 C65,10 85,35 80,65 C70,60 40,50 15,70" fill="#2D5442" opacity="0.6" />
+        <circle cx="48" cy="52" r="4" fill="#2A2A2A" />
+      </svg>
+    </section>
+
+  </main>
+
+  <script>
+    const routeItems = document.querySelectorAll('.route-item');
+    const sections = document.querySelectorAll('section[id]');
+
+    // 1. Highlight current section as user scrolls
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -40% 0px', // Triggers when section enters middle viewport area
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeId = entry.target.getAttribute('id');
+
+          routeItems.forEach(item => {
+            if (item.getAttribute('data-section') === activeId) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // 2. Smooth scroll to section when clicking a route item
+    routeItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const targetId = item.getAttribute('data-section');
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // 3. Fold-out chapters: content grows upward from the button
+    document.querySelectorAll('.reveal-toggle').forEach(btn => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+
+      btn.addEventListener('click', () => {
+        const open = !panel.classList.contains('open');
+        const startTop = btn.getBoundingClientRect().top;
+
+        panel.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+        btn.classList.toggle('is-open', open);
+        btn.setAttribute('aria-label', open ? btn.dataset.labelOpen : btn.dataset.labelClosed);
+
+        // Keep the button pinned in the viewport while the panel grows/shrinks above it
+        const end = performance.now() + 900;
+        (function follow(now) {
+          const delta = btn.getBoundingClientRect().top - startTop;
+          if (delta) window.scrollBy({ top: delta, behavior: 'instant' });
+          if (now < end) requestAnimationFrame(follow);
+        })(performance.now());
+      });
+    });
+    // 4. Spread the side holds across the empty margin left of each chapter
+    function layoutHolds() {
+      document.querySelectorAll('.chapter-section').forEach(sec => {
+        const content = sec.querySelector('.chapter-content');
+        const side = sec.querySelector('.chapter-sidebar');
+        if (!content || !side) return;
+        const free = side.getBoundingClientRect().left - 70;   // keep clear of the vertical label
+        const room = free >= 80 && window.innerWidth > 768;
+        sec.style.setProperty('--left-space', room ? content.getBoundingClientRect().left + 'px' : '48px');
+        sec.style.setProperty('--free', room ? free + 'px' : '0px');
+      });
+    }
+    layoutHolds();
+    window.addEventListener('load', layoutHolds);
+    window.addEventListener('resize', layoutHolds);
+    if (document.fonts) document.fonts.ready.then(layoutHolds);
+  </script>
+</body>
+</html>

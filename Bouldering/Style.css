@@ -1,0 +1,835 @@
+/* ==========================================================================
+RESET & CRITICAL SCROLLING FIXES
+========================================================================== */
+
+*{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+:root {
+--bg-color: #E2D3B8;          /* Warm bouldering wall tan background */
+--card-bg: rgba(155, 187, 151, 0.5);        /* Off-white paper card color */
+--text-primary: #212320;       /* Dark charcoal for high contrast headers */
+--text-muted: #6B6862;         /* Muted brown/gray for body text */
+--green-hold: #3D7058;        /* Green hold color */
+--teal-button: #2a428c;      /* Muted blue/teal action color */
+--orange-button: #D86B56;     /* Muted coral orange accent */
+
+/* ROUTE COLOURS: change a route's colour here and it updates everywhere it is used
+   (route picker hold, side holds, project cards) */
+--route-start:    #212320;   /* Start    (black) */
+--route-about:    #2a428c;   /* About    (blue)  */
+--route-projects: #3D7058;   /* Projects (green) */
+--route-contact:  #D86B56;   /* Contact  (coral) */
+--font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+--font-body: 'Inter', -apple-system, sans-serif;
+}
+
+/* Ensure full natural page scrolling */
+html, body {
+min-height: 100%;
+height: auto !important;
+overflow-x: hidden;
+overflow-y: auto !important;
+background-color: var(--bg-color);
+color: var(--text-primary);
+font-family: var(--font-body);
+line-height: 1.5;
+scroll-behavior: smooth;
+}
+
+/* Subtle texture pattern */
+body {
+background-image:
+radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0),
+radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 0);
+background-size: 24px 24px;
+background-position: 0 0, 12px 12px;
+}
+
+.main-wrapper {
+max-width: 900px;
+margin: 0 auto;
+padding: 40px 20px 80px;
+display: flex;
+flex-direction: column;
+gap: 80px;
+}
+
+/* ==========================================================================
+TYPOGRAPHY & BUTTONS
+========================================================================== */
+.section-tag {
+display: block;
+font-family: var(--font-body);
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: #718991;
+margin-bottom: 0.8rem;
+}
+
+.section-tag-orange {
+color: var(--orange-button);
+}
+
+.btn {
+display: inline-block;
+padding: 14px 32px;
+border-radius: 30px;
+font-family: var(--font-body);
+font-size: 0.95rem;
+font-weight: 600;
+text-decoration: none;
+color: #FFFFFF;
+box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+cursor: pointer;
+border: none;
+}
+
+.btn-teal {
+background-color: var(--teal-button);
+}
+
+.btn-teal:hover {
+background-color: #4C7782;
+transform: translateY(-2px);
+box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+.btn-orange {
+background-color: var(--orange-button);
+}
+
+.btn-orange:hover {
+background-color: #C25743;
+transform: translateY(-2px);
+box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* ==========================================================================
+STICKY ROUTE SELECTOR
+========================================================================== */
+.route-selector {
+position: fixed;
+top: 24px;
+right: 24px;
+background-color: rgba(245, 239, 235, 0.95);
+backdrop-filter: blur(8px);
+border-radius: 12px;
+padding: 16px 20px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+z-index: 100;
+width: 175px;
+border: 1px solid rgba(0,0,0,0.06);
+}
+
+.route-header {
+font-family: var(--font-heading);
+font-size: 0.95rem;
+font-weight: 800;
+margin-bottom: 12px;
+color: var(--text-primary);
+}
+
+.route-list {
+list-style: none;
+}
+
+/* Active chapter item styling */
+.route-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.5; /* Inactive chapters are dimmed */
+}
+
+.route-item:hover {
+  opacity: 0.85;
+  transform: translateX(3px);
+}
+
+.route-item.active {
+  opacity: 1;
+  font-weight: 700;
+  color: var(--text-primary);
+  background-color: rgba(0, 0, 0, 0.05); /* Soft highlight box */
+  transform: translateX(4px);
+}
+
+
+
+.route-footer {
+font-size: 0.6rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+color: #A09C94;
+margin-top: 12px;
+border-top: 1px solid #EAE3D9;
+padding-top: 8px;
+}
+
+/* ==========================================================================
+HERO SECTION
+========================================================================== */
+.hero-section {
+padding: 60px 0;
+text-align: center;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.hero-title {
+font-family: var(--font-heading);
+font-size: clamp(2.4rem, 5vw, 4rem);
+font-weight: 800;
+color: var(--text-primary);
+max-width: 700px;
+line-height: 1.15;
+letter-spacing: -0.02em;
+margin-bottom: 1.2rem;
+}
+
+.hero-subtitle {
+font-size: 1.05rem;
+color: var(--text-muted);
+max-width: 520px;
+margin-bottom: 2rem;
+line-height: 1.6;
+}
+
+.hero-footnote {
+font-size: 0.68rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+color: #8B857A;
+margin-top: 3rem;
+}
+
+/* Floating Holds Positioning */
+.hold {
+  position: absolute;
+  z-index: 2;
+}
+
+.hold:hover {
+transform: scale(1.1) rotate(5deg);
+}
+
+.hold-hero-left {
+width: 80px;
+height: 80px;
+left: 2%;
+top: 15%;
+transform: rotate(-15deg);
+}
+
+.hold-hero-right {
+width: 90px;
+height: 90px;
+right: 2%;
+bottom: 15%;
+transform: rotate(20deg);
+}
+
+/* ==========================================================================
+ABOUT SECTION
+========================================================================== */
+
+.about-title {
+font-family: var(--font-heading);
+font-size: clamp(2rem, 4vw, 3.2rem);
+font-weight: 800;
+color: var(--text-primary);
+line-height: 1.15;
+margin-bottom: 1.2rem;
+letter-spacing: -0.02em;
+}
+
+.about-text {
+font-size: 1.05rem;
+color: var(--text-muted);
+line-height: 1.7;
+max-width: 680px;
+}
+
+
+/* ==========================================================================
+   CHAPTER SECTION & SIDEBAR LAYOUT
+   ========================================================================== */
+.chapter-section {
+  width: 100%;   /* same width for every chapter, so their left edges line up */
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  position: relative;
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 2px solid #D3C4A9;
+}
+
+.chapter-sidebar {
+  width: 60px;
+  flex-shrink: 0;
+  position: relative;
+  height: 100%;
+  
+}
+
+.chapter-sticky-wrapper {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chapter-num {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.chapter-vertical-label {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.chapter-content {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.hold-about-top {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+PROJECTS WALL & STAGGERED LAYOUT
+========================================================================== */
+
+
+.projects-title {
+font-family: var(--font-heading);
+font-size: clamp(2rem, 4vw, 3.2rem);
+font-weight: 800;
+color: var(--text-primary);
+letter-spacing: -0.02em;
+}
+
+.wall-grid {
+display: flex;
+flex-direction: column;
+gap: 30px;
+}
+
+.grid-row {
+display: flex;
+width: 100%;
+}
+
+.row-start {
+justify-content: flex-start;
+}
+
+.row-end {
+justify-content: flex-end;
+}
+
+/* Project Cards */
+.project-card {
+width: 100%;
+max-width: 580px;
+background-color: var(--card-bg);
+border-radius: 16px;
+padding: 22px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+cursor: pointer;
+transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+border: 1px solid rgba(0,0,0,0.04);
+}
+
+.project-card:hover {
+transform: scale(1.02) translateY(-4px) !important;
+box-shadow: 0 18px 35px rgba(0,0,0,0.14);
+}
+
+.card-tilt-left {
+transform: rotate(-1.5deg);
+}
+
+.card-tilt-right {
+transform: rotate(1.5deg);
+}
+
+.project-banner {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintains a consistent aspect ratio */
+  border-radius: 8px;
+  overflow: hidden; /* Clips image overflow to respect rounded corners */
+  background-color: #3D7058; /* Fallback color while image loads */
+}
+
+/* Image scaling and fit */
+.project-img {
+  max-height: 100%; 
+  width: auto;
+  object-fit: cover; /* Ensures the image fills the banner without stretching */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Subtle zoom effect when hovering over a card */
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
+
+.banner-green { background-color: #3D7058; }
+.banner-darkgreen { background-color: #34604B; }
+.banner-deepgreen { background-color: #2D5442; }
+.banner-darkestgreen { background-color: #28493A; }
+
+.banner-text {
+font-family: var(--font-heading);
+font-size: clamp(1.2rem, 3vw, 1.8rem);
+font-weight: 800;
+color: #FFFFFF;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+}
+
+.project-tag {
+font-size: 0.68rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+color: #8C8880;
+display: block;
+margin-bottom: 4px;
+}
+
+.project-name {
+font-family: var(--font-heading);
+font-size: 1.4rem;
+font-weight: 800;
+color: var(--text-primary);
+margin-bottom: 6px;
+}
+
+.project-desc {
+font-size: 0.9rem;
+color: var(--text-muted);
+line-height: 1.5;
+}
+
+/* Inline Hold Spacers between rows */
+.hold-spacer {
+display: flex;
+width: 100%;
+padding: 10px 40px;
+}
+
+.flex-start { justify-content: flex-start; }
+.flex-center { justify-content: center; }
+.flex-end { justify-content: flex-end; }
+
+.hold-inline {
+width: 65px;
+height: 65px;
+filter: drop-shadow(2px 4px 5px rgba(0,0,0,0.15));
+transition: transform 0.3s ease;
+cursor: pointer;
+}
+
+.hold-inline:hover {
+transform: scale(1.15) rotate(6deg);
+}
+
+/* ==========================================================================
+CONTACT SECTION
+========================================================================== */
+
+.hold-contact {
+margin-bottom: 16px;
+}
+
+.contact-title {
+font-family: var(--font-heading);
+font-size: clamp(2rem, 4vw, 3.2rem);
+font-weight: 800;
+color: var(--text-primary);
+margin-bottom: 0.8rem;
+letter-spacing: -0.02em;
+max-width: 550px;
+}
+
+.contact-desc {
+font-size: 0.95rem;
+color: var(--text-muted);
+margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT (MOBILE ADJUSTMENTS)
+   ========================================================================== */
+@media (max-width: 820px) {
+  .route-selector {
+    position: static;
+    margin: 0 auto 30px;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .hold-hero-left, .hold-hero-right, .hold-about-top {
+    display: none;
+  }
+
+  .card-tilt-left, .card-tilt-right {
+    transform: none;
+  }
+}
+
+/* Responsive adjustment for small screens (Stacked chapters on mobile) */
+@media (max-width: 768px) {
+  .chapter-section {
+    flex-direction: column; /* Stack the sidebar above content on small screens */
+    gap: 20px;
+    padding: 40px 20px;
+  }
+
+  .chapter-sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .chapter-sticky-wrapper {
+    position: static; /* Disable sticky pinning on mobile */
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chapter-vertical-label {
+    writing-mode: horizontal-tb; /* Switch back to standard horizontal text on mobile */
+    -webkit-writing-mode: horizontal-tb;
+    font-size: 1.2rem;
+  }
+}
+
+/* ==========================================================================
+   FOLD-OUT CHAPTERS (About & Projects)
+   Content stays hidden until the toggle is pressed, then grows upward
+   from the button.
+   ========================================================================== */
+html { overflow-anchor: none; } /* the script keeps the button pinned instead */
+
+.reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.open { grid-template-rows: 1fr; }
+
+.reveal-clip {
+  min-height: 0;
+  overflow: hidden;
+  margin: 0 -16px 0 calc(-1 * var(--left-space, 48px));            /* room for card shadows without shifting layout */
+  visibility: hidden;         /* hidden content can't be tabbed to */
+  transition: visibility 0s linear 0.8s;
+}
+
+.reveal.open .reveal-clip {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.reveal-inner {
+  padding: 0 16px 40px var(--left-space, 48px);
+  position: relative;
+  min-height: 220px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.open .reveal-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+/* Hold-shaped toggle with waypoint pins either side. Colour = the chapter's --route */
+.route-marker {
+  position: relative;
+  width: 68px;
+  margin: 0 auto 1.2rem;
+  color: var(--route);
+}
+
+
+.reveal-toggle {
+  display: block;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  line-height: 0;
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.22));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-toggle svg { width: 68px; height: 68px; }
+
+.reveal-toggle .chev {
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-toggle:hover { transform: scale(1.06); }
+.reveal-toggle:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; border-radius: 50%; }
+.reveal-toggle.is-open .chev { transform: rotate(180deg); }
+
+/* Two pointers on the left, tips touching the hold (like route tape beside a hold).
+   left/top = where the tip sits; the pin rotates around its tip. */
+.pointer {
+  position: absolute;
+  width: 18px;
+  height: 24px;
+  margin: -24px 0 0 -9px;          /* puts the tip (bottom centre) on left/top */
+  transform-origin: 9px 24px;
+  fill: currentColor;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.pointer-top    { left: 10px; top: 22px; transform: rotate(-62deg); }   /* points down-right at the hold */
+.pointer-bottom { left: 10px; top: 46px; transform: rotate(-118deg); }  /* points up-right at the hold */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-clip, .reveal-inner, .reveal-toggle, .reveal-toggle .chev { transition: none !important; }
+}
+
+/* Always-visible summary, sitting below the arrow */
+.reveal-summary {
+  max-width: 560px;
+}
+
+.reveal-summary p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SIDE HOLDS: a column of differently shaped holds left of each chapter.
+   Inside the fold-out panels they retract with the content.
+   ========================================================================== */
+.side-holds {
+  position: absolute;
+  top: 0;
+  bottom: 40px;      /* matches the panel's bottom padding */
+  left: 0;
+  width: var(--left-space, 48px);
+  pointer-events: none;
+}
+
+.side-holds.outside { left: calc(-1 * var(--left-space, 48px)); bottom: 0; }
+
+.holds-blue   { color: var(--route-about); }
+.holds-green  { color: var(--route-projects); }
+.holds-orange { color: var(--route-contact); }
+
+.lhold {
+  position: absolute;
+  left: calc(var(--free, 0px) * var(--x, 0));
+  pointer-events: auto;
+  transform: rotate(var(--r, 0deg));
+  filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.18));
+  transition: transform 0.3s ease;
+}
+
+.lhold:hover { transform: rotate(calc(var(--r, 0deg) + 8deg)) scale(1.12); }
+
+
+@media (max-width: 768px) {
+  .side-holds { display: none; }
+}
+
+/* Project cards are links to their own pages */
+a.project-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.project-card:focus-visible {
+  outline: 3px solid var(--teal-button);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   PROJECT DETAIL PAGES (projects/*.html)
+   ========================================================================== */
+.project-page { align-items: flex-start; gap: 36px; }
+
+.page-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.page-block { width: 100%; max-width: 680px; }
+.page-block h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.page-block p { color: var(--text-muted); line-height: 1.7; }
+.page-block video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.page-video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 16px; }
+.project-page .hero-title { text-align: left; }
+
+.project-card .project-name { color: var(--text-muted); }
+.project-card .project-tag  { color: rgba(33, 49, 38, 0.7); }
+.project-card .project-desc { color: var(--text-muted); }
+
+/* keeps the green banner readable against the green card */
+.project-banner { border: 2px solid rgba(255, 255, 255, 0.22); }
+
+/* Route picker: one hold per route, coloured from the --route-* variables */
+.route-item[data-section="hero"]     { --c: var(--route-start); }
+.route-item[data-section="about"]    { --c: var(--route-about); }
+.route-item[data-section="projects"] { --c: var(--route-projects); }
+.route-item[data-section="contact"]  { --c: var(--route-contact); }
+
+.route-hold {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--c);
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.route-item.active .route-hold { transform: scale(1.25) rotate(-8deg); }
+
+/* Keep the route holds at full colour; only the labels dim when inactive */
+.route-item,
+.route-item:hover,
+.route-item.active { opacity: 1; }
+
+.route-item .route-label { opacity: 0.5; transition: opacity 0.25s ease; }
+.route-item:hover .route-label { opacity: 0.85; }
+.route-item.active .route-label { opacity: 1; }
+
+/* ==========================================================================
+   ROUTE COLOURS FOR BUTTONS & LINES
+   Each chapter picks up its colour from the --route-* variables in :root.
+   ========================================================================== */
+#hero     { --route: var(--route-start); }
+#about    { --route: var(--route-about); }
+#projects { --route: var(--route-projects); }
+#contact  { --route: var(--route-contact); }
+
+
+/* every button inside a chapter */
+#hero .btn, #contact .btn {
+  background-color: var(--route);
+}
+
+#hero .btn:hover, #contact .btn:hover {
+  background-color: var(--route);
+  filter: brightness(0.88);
+}
+
+/* ==========================================================================
+   SKILLS (About chapter) - chips use the About route colour via --route
+   ========================================================================== */
+.skills { margin-bottom: 2.5rem; }
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: color-mix(in srgb, var(--route) 16%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--route) 55%, transparent);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* small dot in front, like a bolt hole */
+.skill::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--route);
+}
+
+.skill:hover {
+  transform: translateY(-2px) rotate(-1deg);
+  background-color: color-mix(in srgb, var(--route) 28%, transparent);
+}
+
+/* main skills: filled chips */
+.skill-main {
+  background-color: var(--route);
+  border-color: var(--route);
+  color: #FFFFFF;
+}
+
+.skill-main::before { background-color: #FFFFFF; }
+.skill-main:hover   { background-color: var(--route); filter: brightness(0.9); }
