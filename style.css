@@ -10,7 +10,7 @@ padding: 0;
 
 :root {
 --bg-color: #E2D3B8;          /* Warm bouldering wall tan background */
---card-bg: rgba(155, 187, 151, 0.5);        /* Off-white paper card color */
+--card-bg: rgba(189, 179, 123, 0.5);        /* Off-white paper card color */
 --text-primary: #212320;       /* Dark charcoal for high contrast headers */
 --text-muted: #6B6862;         /* Muted brown/gray for body text */
 --green-hold: #3D7058;        /* Green hold color */
