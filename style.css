@@ -101,15 +101,6 @@ transform: translateY(-2px);
 box-shadow: 0 6px 16px rgba(0,0,0,0.18);
 }
 
-.btn-orange {
-background-color: var(--orange-button);
-}
-
-.btn-orange:hover {
-background-color: #C25743;
-transform: translateY(-2px);
-box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-}
 
 /* ==========================================================================
 STICKY ROUTE SELECTOR
@@ -186,12 +177,13 @@ HERO SECTION
 ========================================================================== */
 .hero-section {
 padding: 60px 0;
+min-height: 100dvh;
+justify-content: center;
 text-align: center;
 position: relative;
 display: flex;
 flex-direction: column;
 align-items: center;
-border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .hero-title {
@@ -723,6 +715,12 @@ a.project-card:focus-visible {
 }
 
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.page-banner .page-gif {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
 
 .page-block { width: 100%; max-width: 680px; }
 .page-block h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -775,11 +773,11 @@ a.project-card:focus-visible {
 
 
 /* every button inside a chapter */
-#hero .btn, #contact .btn {
+#hero .btn {
   background-color: var(--route);
 }
 
-#hero .btn:hover, #contact .btn:hover {
+#hero .btn:hover {
   background-color: var(--route);
   filter: brightness(0.88);
 }
@@ -833,3 +831,43 @@ a.project-card:focus-visible {
 
 .skill-main::before { background-color: #FFFFFF; }
 .skill-main:hover   { background-color: var(--route); filter: brightness(0.9); }
+
+/* ==========================================================================
+   SOCIAL ICONS (Contact chapter) - round buttons in the Contact route colour
+   ========================================================================== */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--route);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  filter: brightness(0.88);
+}
+
+.social-link:focus-visible { outline: 3px solid var(--route); outline-offset: 3px; }
